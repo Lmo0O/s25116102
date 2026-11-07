@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    image-rendering: pixelated;
+  }
+
+  body {
+    font-family: 'DotGothic16', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+    user-select: none;
+    -webkit-user-select: none;
+    margin: 0;
+    padding: 0;
+    background-color: #1a2238;
+    color: #1e293b;
+    overflow: hidden;
+  }
+}
+
+.font-pixel {
+  font-family: 'DotGothic16', monospace;
+}
+
+.font-retro-num {
+  font-family: 'Press Start 2P', 'DotGothic16', monospace;
+}
+
+/* Pixel borders and shadows */
+.pixel-box-wood {
+  background: #a06e40;
+  box-shadow: 
+    inset 2px 2px 0px #cf9b67,
+    inset -2px -2px 0px #5c3a1d,
+    0 4px 0 #28170b,
+    0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+.pixel-btn-blue {
+  background: linear-gradient(180deg, #5b87c7 0%, #3e639e 100%);
+  box-shadow: 
+    inset 2px 2px 0px #9bbde8,
+    inset -2px -2px 0px #1f3761,
+    0 4px 0px #142442,
+    0 6px 10px rgba(0,0,0,0.3);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.pixel-btn-blue:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 
+    inset 2px 2px 0px #1f3761,
+    inset -2px -2px 0px #9bbde8,
+    0 1px 0px #142442;
+}
+
+.pixel-btn-disabled {
+  background: #64748b;
+  box-shadow: 
+    inset 2px 2px 0px #94a3b8,
+    inset -2px -2px 0px #334155,
+    0 3px 0px #1e293b;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pixel-btn-active-bite {
+  animation: bite-pulse 0.8s infinite alternate;
+}
+
+@keyframes bite-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 
+      inset 2px 2px 0px #fef08a,
+      inset -2px -2px 0px #854d0e,
+      0 0 15px #eab308,
+      0 4px 0px #713f12;
+  }
+  100% {
+    transform: scale(1.04);
+    box-shadow: 
+      inset 2px 2px 0px #ffffff,
+      inset -2px -2px 0px #a16207,
+      0 0 25px #fde047,
+      0 5px 0px #451a03;
+  }
+}
+
+.pixel-card {
+  background: #fdfaf2;
+  box-shadow: 
+    inset 2px 2px 0px #ffffff,
+    inset -2px -2px 0px #dfd4bf,
+    0 0 0 3px #2d3b56,
+    0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.pixel-plank-sign {
+  background: #9b6b3e;
+  border: 3px solid #3c2410;
+  box-shadow: 
+    inset 2px 2px 0px #c99863,
+    inset -2px -2px 0px #5e3b1c,
+    0 5px 0px #1c0e04,
+    0 8px 12px rgba(0,0,0,0.35);
+}
+
+/* Animations */
+@keyframes swim {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes bobber-idle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(3deg);
+  }
+}
+
+@keyframes bobber-bite-anim {
+  0% {
+    transform: translateY(-2px) rotate(-6deg);
+  }
+  25% {
+    transform: translateY(8px) rotate(10deg);
+  }
+  50% {
+    transform: translateY(2px) rotate(-8deg);
+  }
+  75% {
+    transform: translateY(11px) rotate(6deg);
+  }
+  100% {
+    transform: translateY(-2px) rotate(-6deg);
+  }
+}
+
+@keyframes ripple-ring {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-bobber-idle {
+  animation: bobber-idle 2.4s ease-in-out infinite;
+}
+
+.animate-bobber-bite {
+  animation: bobber-bite-anim 0.35s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple-ring 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+.animate-float {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Natural Fishing Rod Swing & Cast Arc Animations */
+@keyframes rod-cast-swing {
+  0% {
+    transform: rotate(-32deg) translate(0, 0);
+  }
+  /* Phase 1: Pull back (蓄力後拉) */
+  22% {
+    transform: rotate(-68deg) translate(-2px, -3px);
+  }
+  35% {
+    transform: rotate(-74deg) translate(-3px, -4px);
+  }
+  /* Phase 2: Rapid Forward Whip / Arc (向前圓弧甩出) */
+  58% {
+    transform: rotate(-10deg) translate(4px, 2px);
+  }
+  /* Phase 3: Follow-through and Elastic Spring Settle (順滑回彈微擺動) */
+  74% {
+    transform: rotate(-22deg) translate(1px, 0px);
+  }
+  86% {
+    transform: rotate(-35deg) translate(0px, 0px);
+  }
+  100% {
+    transform: rotate(-32deg) translate(0, 0);
+  }
+}
+
+@keyframes arm-cast-swing {
+  0% {
+    transform: rotate(-4deg);
+  }
+  24% {
+    transform: rotate(-26deg) translate(-2px, -2px);
+  }
+  35% {
+    transform: rotate(-32deg) translate(-3px, -2px);
+  }
+  58% {
+    transform: rotate(14deg) translate(3px, 1px);
+  }
+  76% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes angler-body-cast {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1.5px, -0.5px);
+  }
+  58% {
+    transform: translate(2px, 1px);
+  }
+  85% {
+    transform: translate(0.5px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bobber-cast-arc {
+  0% {
+    transform: translate(-140px, -70px) scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(-110px, -110px) scale(0.85);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-60px, -140px) scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-15px, -60px) scale(1);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(0px, 8px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes line-cast-arc {
+  0% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+
+.animate-rod-cast {
+  animation: rod-cast-swing 0.75s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.animate-arm-cast {
+  animation: arm-cast-swing 0.75s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.animate-angler-cast {
+  animation: angler-body-cast 0.75s ease-in-out forwards;
+}
+
+.animate-bobber-cast {
+  animation: bobber-cast-arc 0.75s cubic-bezier(0.25, 0.8, 0.35, 1) forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate(-50%, -40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+

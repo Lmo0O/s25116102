@@ -1,0 +1,6 @@
+{
+  "name": "像素悠閒釣魚日",
+  "description": "2D 復古 16-bit 像素風休閒釣魚網頁遊戲，在寧靜湖畔享受垂釣樂趣，收集豐富魚種圖鑑與賺取金幣！",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
